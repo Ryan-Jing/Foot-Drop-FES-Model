@@ -1,6 +1,7 @@
-#!/bin/sh
+#!/bin/bash
 
 python3 /Users/ryanjing/MatLab_Projects/355_Project/Foot-Drop-FES-Model/get_code_googledocs.py
+
 # Change directory to your repository path
 cd /Users/ryanjing/MatLab_Projects/355_Project/Foot-Drop-FES-Model
 

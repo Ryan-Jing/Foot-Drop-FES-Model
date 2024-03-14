@@ -1,6 +1,7 @@
 import os
 import io
 import re
+import subprocess
 from googleapiclient.discovery import build
 from google.oauth2 import service_account
 from git import Repo
@@ -34,10 +35,6 @@ def main():
     credentials = service_account.Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE, scopes=SCOPES)
     service = build('docs', 'v1', credentials=credentials)
 
-    # Connect to the repository
-    repo = Repo(REPO_PATH)
-    origin = repo.remote()
-
     # Read the Google Docs file content
     doc_id = '1afZ1KtkHvkHk6-m-ujB37t8B9DOTES-2cromKDjRjXs'
     google_doc_content = read_google_doc(service, doc_id)
@@ -47,13 +44,18 @@ def main():
     with open(FILE_PATH, 'w') as file:
         file.write(google_doc_content)
 
-    # Stage and commit changes
-    repo.git.add(FILE_PATH)
-    repo.index.commit('Update from Google Docs')
+    # subprocess.run(['/Users/ryanjing/MatLab_Projects/355_Project/Foot-Drop-FES-Model/git_push.sh'])
 
-    # Push to the repository
-    origin.push(BRANCH)
-    print("Changes pushed to the repository.")
+    # repo = Repo(REPO_PATH)
+    # origin = repo.remote()
+
+    # # Stage and commit changes
+    # repo.git.add(FILE_PATH)
+    # repo.index.commit('Update from Google Docs')
+
+    # # Push to the repository
+    # origin.push(BRANCH)
+    # print("Changes pushed to the repository.")
 
 
 if __name__ == '__main__':

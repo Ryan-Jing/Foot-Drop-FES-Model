@@ -29,9 +29,6 @@ def read_google_doc(service, doc_id):
                 content += '\n'  # Add a newline after each paragraph
     return content
 
-def get_latest_commit_message(repo):
-    return repo.head.commit.message
-
 def main():
     # Authenticate with Google Docs API
     credentials = service_account.Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE, scopes=SCOPES)
@@ -46,9 +43,6 @@ def main():
     google_doc_content = read_google_doc(service, doc_id)
 
     print(google_doc_content)
-
-    # Check if there are changes
-    latest_commit_message = get_latest_commit_message(repo)
 
     with open(FILE_PATH, 'w') as file:
         file.write(google_doc_content)

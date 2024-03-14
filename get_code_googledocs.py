@@ -58,7 +58,7 @@ def main():
     with open(FILE_PATH, 'w') as file:
         file.write(google_doc_content)
 
-    Stage and commit changes
+    # Stage and commit changes
     repo.git.add(FILE_PATH)
     repo.index.commit('Update from Google Docs')
 

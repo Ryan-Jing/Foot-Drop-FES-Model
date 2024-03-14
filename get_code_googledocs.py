@@ -13,7 +13,7 @@ SERVICE_ACCOUNT_FILE = '/Users/ryanjing/matlab-pull-project-accd04b13ab0.json'  
 REPO_URL = 'https://github.com/Ryan-Jing/Foot-Drop-FES-Model.git'
 BRANCH = 'code-group-uploads'
 REPO_PATH = '/Users/ryanjing/MatLab_Projects/355_Project/Foot-Drop-FES-Model'  # Path to clone the repository
-FILE_PATH = 'BME_355_Project_Model_Implementation.m'
+FILE_PATH = '/Users/ryanjing/MatLab_Projects/355_Project/Foot-Drop-FES-Model/BME_355_Project_Model_Implementation.m'
 
 def read_google_doc(service, doc_id):
     doc = service.documents().get(documentId=doc_id).execute()

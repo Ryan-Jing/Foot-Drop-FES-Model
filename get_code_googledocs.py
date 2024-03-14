@@ -10,6 +10,8 @@ SCOPES = ['https://www.googleapis.com/auth/documents.readonly']
 SERVICE_ACCOUNT_FILE = '/Users/ryanjing/matlab-pull-project-accd04b13ab0.json'  # Update with your credentials file
 
 # Git repository settings
+REPO_URL = 'https://github.com/Ryan-Jing/Foot-Drop-FES-Model.git'
+BRANCH = 'code-group-uploads'
 REPO_PATH = '/Users/ryanjing/MatLab_Projects/355_Project/Foot-Drop-FES-Model'  # Path to clone the repository
 FILE_PATH = '/Users/ryanjing/MatLab_Projects/355_Project/Foot-Drop-FES-Model/BME_355_Project_Model_Implementation.m'
 
@@ -27,10 +29,17 @@ def read_google_doc(service, doc_id):
                 content += '\n'  # Add a newline after each paragraph
     return content
 
+def get_latest_commit_message(repo):
+    return repo.head.commit.message
+
 def main():
     # Authenticate with Google Docs API
     credentials = service_account.Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE, scopes=SCOPES)
     service = build('docs', 'v1', credentials=credentials)
+
+    # Connect to the repository
+    repo = Repo(REPO_PATH)
+    origin = repo.remote()
 
     # Read the Google Docs file content
     doc_id = '1afZ1KtkHvkHk6-m-ujB37t8B9DOTES-2cromKDjRjXs'
@@ -38,12 +47,20 @@ def main():
 
     print(google_doc_content)
 
+    # Check if there are changes
+    latest_commit_message = get_latest_commit_message(repo)
+
     with open(FILE_PATH, 'w') as file:
         file.write(google_doc_content)
 
-    # Call the shell script to add, commit, and push changes
-    os.system("/Users/ryanjing/MatLab_Projects/355_Project/Foot-Drop-FES-Model/git_push.sh")
+    # Stage and commit changes
+    repo.git.add(FILE_PATH)
+    repo.index.commit('Update from Google Docs')
+
+    # Push to the repository
+    origin.push(BRANCH)
     print("Changes pushed to the repository.")
+
 
 if __name__ == '__main__':
     main()

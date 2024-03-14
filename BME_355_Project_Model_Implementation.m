@@ -1,4 +1,4 @@
-%% Crontab Test 1 Hour
+%% CRONTAB
 
 %% Plot
 

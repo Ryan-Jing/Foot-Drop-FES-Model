@@ -46,16 +46,16 @@ def main():
 
     # subprocess.run(['/Users/ryanjing/MatLab_Projects/355_Project/Foot-Drop-FES-Model/git_push.sh'])
 
-    # repo = Repo(REPO_PATH)
-    # origin = repo.remote()
+    repo = Repo(REPO_PATH)
+    origin = repo.remote()
 
-    # # Stage and commit changes
-    # repo.git.add(FILE_PATH)
-    # repo.index.commit('Update from Google Docs')
+    # Stage and commit changes
+    repo.git.add(FILE_PATH)
+    repo.index.commit('Update from Google Docs')
 
-    # # Push to the repository
-    # origin.push(BRANCH)
-    # print("Changes pushed to the repository.")
+    # Push to the repository
+    origin.push(BRANCH)
+    print("Changes pushed to the repository.")
 
 
 if __name__ == '__main__':

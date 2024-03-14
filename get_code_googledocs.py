@@ -50,11 +50,6 @@ def main():
     # Check if there are changes
     latest_commit_message = get_latest_commit_message(repo)
 
-    # with open(os.path.join(REPO_PATH, FILE_PATH), 'r') as file:
-    #     local_file_content = file.read()
-
-    # if google_doc_content != local_file_content:
-        # Write the content to the file
     with open(FILE_PATH, 'w') as file:
         file.write(google_doc_content)
 
@@ -66,8 +61,6 @@ def main():
     origin.push(BRANCH)
     print("Changes pushed to the repository.")
 
-    # else:
-    #     print("No changes detected.")
 
 if __name__ == '__main__':
     main()
